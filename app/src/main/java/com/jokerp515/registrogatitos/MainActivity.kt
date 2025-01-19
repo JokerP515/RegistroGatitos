@@ -16,6 +16,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -45,7 +46,7 @@ fun AppNavigation(viewModel: RegistroDeGatosViewModel) {
         ) { padding ->
             NavHost(
                 navController = navController,
-                startDestination = "registro",
+                startDestination = stringResource(R.string.registro),
                 Modifier.padding(padding)
             ) {
                 composable("registro") {
@@ -69,21 +70,21 @@ fun NavigationBar(navController: NavHostController) {
         contentColor = MaterialTheme.colorScheme.onPrimaryContainer
     ) {
         NavigationBarItem(
-            icon = { Icon(Icons.Default.Add, contentDescription = "Registro") },
-            label = { Text("Registro") },
-            selected = navController.currentBackStackEntry?.destination?.route == "registro",
+            icon = { Icon(Icons.Default.Add, contentDescription = stringResource(R.string.Registro)) },
+            label = { Text(stringResource(R.string.Registro)) },
+            selected = navController.currentBackStackEntry?.destination?.route == stringResource(R.string.registro),
             onClick = { navController.navigate("registro") }
         )
         NavigationBarItem(
-            icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = "Lista") },
-            label = { Text("Lista") },
-            selected = navController.currentBackStackEntry?.destination?.route == "lista",
+            icon = { Icon(Icons.AutoMirrored.Filled.List, contentDescription = stringResource(R.string.Lista)) },
+            label = { Text(stringResource(R.string.Lista)) },
+            selected = navController.currentBackStackEntry?.destination?.route == stringResource(R.string.lista),
             onClick = { navController.navigate("lista") }
         )
         NavigationBarItem(
-            icon = { Icon(Icons.Default.Info, contentDescription = "Preview") },
-            label = { Text("Vista Previa") },
-            selected = navController.currentBackStackEntry?.destination?.route == "preview",
+            icon = { Icon(Icons.Default.Info, contentDescription = stringResource(R.string.Preview)) },
+            label = { Text(stringResource(R.string.Vista_Previa)) },
+            selected = navController.currentBackStackEntry?.destination?.route == stringResource(R.string.preview),
             onClick = { navController.navigate("preview") }
         )
     }

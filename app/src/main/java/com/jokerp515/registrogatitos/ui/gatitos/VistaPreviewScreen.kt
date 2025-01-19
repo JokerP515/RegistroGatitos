@@ -10,7 +10,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.data.Gato
 import kotlin.random.Random
 
@@ -19,12 +21,13 @@ fun VistaPreviewScreen() {
     val gatosAleatorios = generarGatosPreview(10)
 
     Column (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = "Vista Previa - Lista de Gatos",
+            text = stringResource(R.string.vista_previa_lista_de_gatitos),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 16.dp)
         )

@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -21,8 +23,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 import kotlinx.coroutines.launch
 
@@ -40,14 +44,18 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
+    // Dado el caso el dispositivo sea pequeño, se puede hacer scroll
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            "Registro de Gato",
+            stringResource(R.string.registro_de_un_gatito),
             modifier = Modifier.padding(bottom = 16.dp),
             style = MaterialTheme.typography.titleLarge
         )
@@ -56,33 +64,33 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
         OutlinedTextField(
             value = nombre,
             onValueChange = { nombre = it },
-            label = { Text("Nombre") },
+            label = { Text(stringResource(R.string.nombre)) },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = genero,
             onValueChange = { genero = it },
-            label = { Text("Género") },
+            label = { Text(stringResource(R.string.genero)) },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
             value = edad,
             onValueChange = { if (it.all { char -> char.isDigit() }) edad = it },
-            label = { Text("Edad (años)") },
+            label = { Text(stringResource(R.string.edad)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         OutlinedTextField(
             value = peso,
             onValueChange = { if (it.isFloatOrEmpty()) peso = it },
-            label = { Text("Peso (kg)") },
+            label = { Text(stringResource(R.string.peso_kg)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         OutlinedTextField(
             value = color,
             onValueChange = { color = it },
-            label = { Text("Color") },
+            label = { Text(stringResource(R.string.color)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -94,7 +102,7 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
                     .padding(vertical = 8.dp)
             ) {
                 Text(
-                    text = "Falta la siguiente información:",
+                    text = stringResource(R.string.falta_la_siguiente_informacion),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.error
                 )
@@ -136,7 +144,7 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
             },
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Guardar")
+            Text(text = stringResource(R.string.guardar))
         }
     }
 

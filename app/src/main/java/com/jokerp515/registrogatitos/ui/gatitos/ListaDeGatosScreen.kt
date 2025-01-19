@@ -10,18 +10,21 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 
 @Composable
 fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
     Column (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = "Lista de Gatos Registrados",
+            text = stringResource(R.string.lista_de_gatos_registrados),
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -36,19 +39,3 @@ fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
         }
     }
 }
-
-//@Composable
-//fun GatoCard(gato: Gato) {
-//    Card(
-//        modifier = Modifier.fillMaxWidth(),
-//        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-//    ) {
-//        Column(modifier = Modifier.padding(16.dp)) {
-//            Text(text = "Nombre: ${gato.Nombre}")
-//            Text(text = "Género: ${gato.Genero}")
-//            Text(text = "Edad: ${gato.Edad} años")
-//            Text(text = "Peso: ${gato.Peso} kg")
-//            Text(text = "Color: ${gato.Color}")
-//        }
-//    }
-//}

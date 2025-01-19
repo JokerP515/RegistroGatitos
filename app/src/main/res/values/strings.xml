@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Registro Gatitos</string>
+    <string name="registro">registro</string>
+    <string name="lista">lista</string>
+    <string name="Lista">Lista</string>
+    <string name="Registro">Registro</string>
+    <string name="Preview">Preview</string>
+    <string name="Vista_Previa">Vista Previa</string>
+    <string name="preview">preview</string>
+    <string name="mostrar_menos">Mostrar menos</string>
+    <string name="mostrar_mas">Mostrar más</string>
+    <string name="lista_de_gatos_registrados">Lista de Gatos Registrados</string>
+    <string name="falta_la_siguiente_informacion">Falta la siguiente información:</string>
+    <string name="registro_de_un_gatito">Registro de un Gatito</string>
+    <string name="edad">Edad (años)</string>
+    <string name="genero">Género</string>
+    <string name="nombre">Nombre</string>
+    <string name="peso_kg">Peso (kg)</string>
+    <string name="color">Color</string>
+    <string name="guardar">Guardar</string>
+    <string name="vista_previa_lista_de_gatitos">Vista Previa - Lista de Gatitos</string>
 </resources>
