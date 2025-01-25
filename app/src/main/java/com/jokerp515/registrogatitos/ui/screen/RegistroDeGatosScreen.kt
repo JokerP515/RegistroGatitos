@@ -1,4 +1,4 @@
-package com.jokerp515.registrogatitos.ui.gatitos
+package com.jokerp515.registrogatitos.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

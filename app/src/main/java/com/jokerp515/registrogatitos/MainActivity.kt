@@ -21,9 +21,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.jokerp515.registrogatitos.ui.gatitos.ListaDeGatosScreen
-import com.jokerp515.registrogatitos.ui.gatitos.RegistroDeGatosScreen
-import com.jokerp515.registrogatitos.ui.gatitos.VistaPreviewScreen
+import com.jokerp515.registrogatitos.ui.screen.ListaDeGatosScreen
+import com.jokerp515.registrogatitos.ui.screen.RegistroDeGatosScreen
+import com.jokerp515.registrogatitos.ui.screen.VistaPreviewScreen
 import com.jokerp515.registrogatitos.ui.theme.RegistroGatitosTheme
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 

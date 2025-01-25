@@ -1,4 +1,4 @@
-package com.jokerp515.registrogatitos.ui.gatitos
+package com.jokerp515.registrogatitos.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,13 +10,16 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.jokerp515.registrogatitos.R
-import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
+import com.jokerp515.registrogatitos.data.Gato
 
+// Funcion generica encargada de mostrar la lista de gatitos, es usada por VistaPreviewScreen y ListaDeGatosScreen
 @Composable
-fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
+fun ListaScreen(
+    titulo: String,
+    gatos: List<Gato>,
+    itemContent: @Composable (Gato) -> Unit
+) {
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -24,7 +27,7 @@ fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = stringResource(R.string.lista_de_gatos_registrados),
+            text = titulo,
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(bottom = 8.dp)
         )
@@ -33,8 +36,8 @@ fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ){
-            items(viewModel.listaDeGatos){ gato ->
-                GatoCard(gato)
+            items(gatos){ gato ->
+                itemContent(gato)
             }
         }
     }
