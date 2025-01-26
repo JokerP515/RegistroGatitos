@@ -33,9 +33,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.data.Gato
+import com.jokerp515.registrogatitos.local.entities.GatoEntity
 
 @Composable
-fun GatoCard(gato: Gato) {
+fun GatoCard(gato: GatoEntity) {
     // Estado para controlar la expansión de la tarjeta
     var expanded by rememberSaveable { mutableStateOf(false) }
 

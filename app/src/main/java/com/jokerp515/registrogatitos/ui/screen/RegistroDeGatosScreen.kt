@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.jokerp515.registrogatitos.R
+import com.jokerp515.registrogatitos.ui.events.GatoEvent
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,8 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
     var color by rememberSaveable { mutableStateOf("") }
     var errorMessages by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
     var showSuccessMessage by remember { mutableStateOf(false) }
+
+    var gato = viewModel.gato
 
     // Crear SnackbarHostState
     val snackbarHostState = remember { SnackbarHostState() }
@@ -62,34 +65,44 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
 
         // Campos de entrada
         OutlinedTextField(
-            value = nombre,
-            onValueChange = { nombre = it },
+            value = gato.nombre,
+            onValueChange = { viewModel.onEvent(GatoEvent.NameChanged(it)) },
             label = { Text(stringResource(R.string.nombre)) },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
-            value = genero,
-            onValueChange = { genero = it },
+            value = gato.genero,
+            onValueChange = { viewModel.onEvent(GatoEvent.GenderChanged(it)) },
             label = { Text(stringResource(R.string.genero)) },
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
-            value = edad,
-            onValueChange = { if (it.all { char -> char.isDigit() }) edad = it },
+            value = gato.edad.toString(),
+            onValueChange = { //if (it.all { char -> char.isDigit() }) edad = it
+                val edadInt = it.toIntOrNull()
+                if (edadInt != null) {
+                    viewModel.onEvent(GatoEvent.AgeChanged(edadInt))
+                }
+            },
             label = { Text(stringResource(R.string.edad)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         OutlinedTextField(
-            value = peso,
-            onValueChange = { if (it.isFloatOrEmpty()) peso = it },
+            value = gato.peso.toString(),
+            onValueChange = {
+                val pesoDouble = it.toDoubleOrNull()
+                if (pesoDouble != null) {
+                    viewModel.onEvent(GatoEvent.WeightChanged(pesoDouble))
+                }
+            }, //if (it.isFloatOrEmpty()) peso = it
             label = { Text(stringResource(R.string.peso_kg)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         OutlinedTextField(
-            value = color,
-            onValueChange = { color = it },
+            value = gato.color,
+            onValueChange = { viewModel.onEvent(GatoEvent.ColorChanged(it)) },
             label = { Text(stringResource(R.string.color)) },
             modifier = Modifier.fillMaxWidth()
         )
@@ -119,22 +132,23 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
         // Botón de guardado
         Button(
             onClick = {
-                val missingFields = checkMissingFields(nombre, genero, edad, peso, color)
+                val missingFields = checkMissingFields(gato.nombre, gato.genero, gato.edad.toString(), gato.peso.toString(), gato.color)
                 if (missingFields.isEmpty()) {
-                    // Registrar el gato si todo está correcto
-                    viewModel.agregarGato(
-                        nombre,
-                        genero,
-                        edad.toInt(),
-                        peso.toDouble(),
-                        color
-                    )
-                    // Limpiar los campos después de guardar
-                    nombre = ""
-                    genero = ""
-                    edad = ""
-                    peso = ""
-                    color = ""
+//                    // Registrar el gato si todo está correcto
+//                    viewModel.agregarGato(
+//                        nombre,
+//                        genero,
+//                        edad.toInt(),
+//                        peso.toDouble(),
+//                        color
+//                    )
+//                    // Limpiar los campos después de guardar
+//                    nombre = ""
+//                    genero = ""
+//                    edad = ""
+//                    peso = ""
+//                    color = ""
+                    viewModel.onEvent(GatoEvent.onSave)
                     errorMessages = emptyList() // Limpiar mensajes de error
                     showSuccessMessage = true
                 } else {

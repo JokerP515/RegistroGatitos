@@ -1,4 +1,4 @@
-package com.jokerp515.registrogatitos.navigation.graphs
+package com.jokerp515.registrogatitos.ui.navigation.graphs
 
 import kotlinx.serialization.Serializable
 

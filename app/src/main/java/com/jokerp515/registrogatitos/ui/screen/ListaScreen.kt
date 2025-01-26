@@ -11,14 +11,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jokerp515.registrogatitos.data.Gato
+import com.jokerp515.registrogatitos.local.entities.GatoEntity
 
 // Funcion generica encargada de mostrar la lista de gatitos, es usada por VistaPreviewScreen y ListaDeGatosScreen
 @Composable
 fun ListaScreen(
     titulo: String,
-    gatos: List<Gato>,
-    itemContent: @Composable (Gato) -> Unit
+    gatos: List<GatoEntity>,
+    itemContent: @Composable (GatoEntity) -> Unit
 ) {
     Column (
         modifier = Modifier

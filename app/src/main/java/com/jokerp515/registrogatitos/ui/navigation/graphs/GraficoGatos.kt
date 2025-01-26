@@ -1,8 +1,9 @@
-package com.jokerp515.registrogatitos.navigation.graphs
+package com.jokerp515.registrogatitos.ui.navigation.graphs
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation
 import androidx.navigation.compose.composable
+import com.jokerp515.registrogatitos.ui.navigation.routes.Routes
 import com.jokerp515.registrogatitos.ui.screen.ListaDeGatosScreen
 import com.jokerp515.registrogatitos.ui.screen.RegistroDeGatosScreen
 import com.jokerp515.registrogatitos.ui.screen.VistaPreviewScreen

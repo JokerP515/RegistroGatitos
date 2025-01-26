@@ -4,11 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.data.Gato
+import com.jokerp515.registrogatitos.local.entities.GatoEntity
 import com.jokerp515.registrogatitos.ui.gatitos.GatoCard
+import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 import kotlin.random.Random
 
 @Composable
-fun VistaPreviewScreen() {
+fun VistaPreviewScreen(viewModel: RegistroDeGatosViewModel, go: (Any) -> Unit) {
     val gatosAleatorios = generarGatosPreview(10)
 
     ListaScreen(
@@ -19,7 +21,7 @@ fun VistaPreviewScreen() {
     }
 }
 
-fun generarGatosPreview(cantidad: Int): List<Gato> {
+fun generarGatosPreview(cantidad: Int): List<GatoEntity> {
     val nombres = listOf("Milo", "Luna", "Simba", "Oliver", "Bella", "Leo", "Chloe", "Max", "Nala", "Daisy")
     val colores = listOf("Negro", "Blanco", "Gris", "Anaranjado", "Moteado", "Rayado")
     val generos = listOf("Macho", "Hembra")
@@ -31,6 +33,6 @@ fun generarGatosPreview(cantidad: Int): List<Gato> {
             edad = Random.nextInt(1, 15), // Edad entre 1 y 15 años
             peso = Random.nextDouble(2.0, 10.0), // Peso entre 2kg y 10kg
             color = colores.random()
-        )
+        ).toEntity()
     }
 }
