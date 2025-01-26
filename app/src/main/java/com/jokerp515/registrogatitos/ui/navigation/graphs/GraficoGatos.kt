@@ -15,10 +15,10 @@ fun NavGraphBuilder.graficoGatos(viewModel: RegistroDeGatosViewModel, go: (Any) 
             RegistroDeGatosScreen(viewModel)
         }
         composable<Routes.Lista> {
-            ListaDeGatosScreen(viewModel, go = go)
+            ListaDeGatosScreen(viewModel)
         }
         composable<Routes.VistaPrevia> {
-            VistaPreviewScreen(viewModel, go = go)
+            VistaPreviewScreen()
         }
     }
 }

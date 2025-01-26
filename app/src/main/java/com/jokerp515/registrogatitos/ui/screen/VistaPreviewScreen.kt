@@ -6,18 +6,17 @@ import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.data.Gato
 import com.jokerp515.registrogatitos.local.entities.GatoEntity
 import com.jokerp515.registrogatitos.ui.gatitos.GatoCard
-import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 import kotlin.random.Random
 
 @Composable
-fun VistaPreviewScreen(viewModel: RegistroDeGatosViewModel, go: (Any) -> Unit) {
+fun VistaPreviewScreen() {
     val gatosAleatorios = generarGatosPreview(10)
 
     ListaScreen(
         titulo = stringResource(R.string.vista_previa_lista_de_gatitos),
         gatos = gatosAleatorios
     ) { gato ->
-        GatoCard(gato)
+        GatoCard(gato, onDelete = {} ) // Función OnDelete no funcional en vista previa
     }
 }
 

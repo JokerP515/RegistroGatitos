@@ -18,16 +18,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jokerp515.registrogatitos.ui.navigation.graphs.Graph
 import com.jokerp515.registrogatitos.ui.navigation.graphs.graficoGatos
 import com.jokerp515.registrogatitos.ui.navigation.routes.Routes
-import com.jokerp515.registrogatitos.ui.screen.ListaDeGatosScreen
-import com.jokerp515.registrogatitos.ui.screen.RegistroDeGatosScreen
-import com.jokerp515.registrogatitos.ui.screen.VistaPreviewScreen
 import com.jokerp515.registrogatitos.ui.theme.RegistroGatitosTheme
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 import dagger.hilt.android.AndroidEntryPoint

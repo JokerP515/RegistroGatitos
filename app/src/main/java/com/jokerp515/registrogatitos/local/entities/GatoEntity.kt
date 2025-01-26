@@ -9,7 +9,7 @@ data class GatoEntity(
     val id: Long?,
     val nombre: String,
     val genero: String,
-    val edad: String,
-    val peso: String,
+    val edad: Int,
+    val peso: Double,
     val color: String
 )

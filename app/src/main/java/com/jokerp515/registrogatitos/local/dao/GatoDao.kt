@@ -14,7 +14,7 @@ interface GatoDao{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(gato: GatoEntity)
 
-    @Query("SELECT * FROM GatoEntity")
+    @Query("SELECT * FROM GatoEntity ORDER BY nombre ASC")
     fun getAll(): Flow<List<GatoEntity>>
 
     @Transaction

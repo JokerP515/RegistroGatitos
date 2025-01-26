@@ -9,11 +9,13 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
@@ -32,11 +34,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.MaterialTheme
 import com.jokerp515.registrogatitos.R
-import com.jokerp515.registrogatitos.data.Gato
 import com.jokerp515.registrogatitos.local.entities.GatoEntity
 
 @Composable
-fun GatoCard(gato: GatoEntity) {
+fun GatoCard(gato: GatoEntity, onDelete: () -> Unit) {
     // Estado para controlar la expansión de la tarjeta
     var expanded by rememberSaveable { mutableStateOf(false) }
 
@@ -51,12 +52,29 @@ fun GatoCard(gato: GatoEntity) {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             // Mostrar el nombre del gato
-            Text(
-                text = gato.nombre,
-                style = MaterialTheme.typography.headlineMedium,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
+            Column(modifier = Modifier.fillMaxWidth()) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    // Mostrar el nombre del gato
+                    Text(
+                        text = gato.nombre,
+                        style = MaterialTheme.typography.headlineMedium,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    // Botón de eliminar
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = stringResource(R.string.eliminar),
+                        modifier = Modifier
+                            .clickable { onDelete() }
+                            .padding(4.dp)
+                    )
+                }
+            }
 
             // Animación para expandir o contraer la información adicional
             AnimatedVisibility(

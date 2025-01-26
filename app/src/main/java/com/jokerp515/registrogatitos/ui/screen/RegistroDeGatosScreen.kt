@@ -33,15 +33,13 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
-    var nombre by rememberSaveable { mutableStateOf("") }
-    var genero by rememberSaveable { mutableStateOf("") }
-    var edad by rememberSaveable { mutableStateOf("") }
-    var peso by rememberSaveable { mutableStateOf("") }
-    var color by rememberSaveable { mutableStateOf("") }
+    val gato = viewModel.gato
+
+    var edadInput by rememberSaveable { mutableStateOf("") }
+    var pesoInput by rememberSaveable { mutableStateOf("") }
+
     var errorMessages by rememberSaveable { mutableStateOf<List<String>>(emptyList()) }
     var showSuccessMessage by remember { mutableStateOf(false) }
-
-    var gato = viewModel.gato
 
     // Crear SnackbarHostState
     val snackbarHostState = remember { SnackbarHostState() }
@@ -77,29 +75,29 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
             modifier = Modifier.fillMaxWidth()
         )
         OutlinedTextField(
-            value = gato.edad.toString(),
-            onValueChange = { //if (it.all { char -> char.isDigit() }) edad = it
-                val edadInt = it.toIntOrNull()
-                if (edadInt != null) {
-                    viewModel.onEvent(GatoEvent.AgeChanged(edadInt))
+            value = edadInput,
+            onValueChange = { input ->
+                if (input.all { char -> char.isDigit() }) {
+                    edadInput = input
                 }
             },
             label = { Text(stringResource(R.string.edad)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
+
         OutlinedTextField(
-            value = gato.peso.toString(),
-            onValueChange = {
-                val pesoDouble = it.toDoubleOrNull()
-                if (pesoDouble != null) {
-                    viewModel.onEvent(GatoEvent.WeightChanged(pesoDouble))
+            value = pesoInput,
+            onValueChange = { input ->
+                if (input.isValidDoubleInput()) {
+                    pesoInput = input
                 }
-            }, //if (it.isFloatOrEmpty()) peso = it
+            },
             label = { Text(stringResource(R.string.peso_kg)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
+
         OutlinedTextField(
             value = gato.color,
             onValueChange = { viewModel.onEvent(GatoEvent.ColorChanged(it)) },
@@ -132,22 +130,20 @@ fun RegistroDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
         // Botón de guardado
         Button(
             onClick = {
-                val missingFields = checkMissingFields(gato.nombre, gato.genero, gato.edad.toString(), gato.peso.toString(), gato.color)
+                val missingFields = checkMissingFields(
+                    gato.nombre,
+                    gato.genero,
+                    edadInput,
+                    pesoInput,
+                    gato.color
+                )
                 if (missingFields.isEmpty()) {
-//                    // Registrar el gato si todo está correcto
-//                    viewModel.agregarGato(
-//                        nombre,
-//                        genero,
-//                        edad.toInt(),
-//                        peso.toDouble(),
-//                        color
-//                    )
-//                    // Limpiar los campos después de guardar
-//                    nombre = ""
-//                    genero = ""
-//                    edad = ""
-//                    peso = ""
-//                    color = ""
+                    // Registrar el gato si todo está correcto
+                    gato.edad = edadInput.toIntOrNull() ?: 0 // Actualizar la edad porque no se hace directamente en el input
+                    gato.peso = pesoInput.toDoubleOrNull() ?: 0.0 // Igual en este campo
+                    pesoInput = ""
+                    edadInput = ""
+
                     viewModel.onEvent(GatoEvent.onSave)
                     errorMessages = emptyList() // Limpiar mensajes de error
                     showSuccessMessage = true
@@ -194,7 +190,8 @@ fun checkMissingFields(
     return missing
 }
 
-// Extensión para validar números flotantes
-fun String.isFloatOrEmpty(): Boolean {
+fun String.isValidDoubleInput(): Boolean {
+    // Permitir un número flotante válido o una cadena vacía
+    //return this.isEmpty() || this.matches(Regex("^\\d*\\.?\\d*\$"))
     return this.isEmpty() || this.toFloatOrNull() != null
 }

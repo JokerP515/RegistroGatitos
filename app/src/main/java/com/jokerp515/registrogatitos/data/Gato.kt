@@ -6,16 +6,16 @@ data class Gato(
     val id: Long? = null,
     val nombre: String = "",
     val genero: String = "",
-    val edad: Int,
-    val peso: Double,
+    var edad: Int = 0,
+    var peso: Double = 0.0,
     val color: String = ""
 ){
     fun toEntity() = GatoEntity(
         id = id,
         nombre = nombre,
         genero = genero,
-        edad = edad.toString(),
-        peso = peso.toString(),
+        edad = edad,
+        peso = peso,
         color = color
     )
 }

@@ -19,30 +19,11 @@ class RegistroDeGatosViewModel
     @Inject constructor(
         private val gatoDao: GatoDao
     ) : ViewModel() {
-    private val _listaDeGatos = mutableStateListOf<Gato>() // Posiblemente no necesario
-    val listaDeGatos: List<Gato> get() = _listaDeGatos
 
     var gato by mutableStateOf(Gato())
 
     var gatoFlow = gatoDao.getAll()
 
-//    fun agregarGato(nombre: String, genero: String, edad: Int, peso: Double, color: String) {
-//        _listaDeGatos.add(
-//            Gato(
-//                null,
-//                nombre,
-//                genero,
-//                edad,
-//                peso,
-//                color
-//            )
-//        )
-//        viewModelScope.launch {
-//            gatoDao.insert(
-//                gato.toEntity()
-//            )
-//        }
-//    }
 
     private fun agregarGato() {
         viewModelScope.launch {

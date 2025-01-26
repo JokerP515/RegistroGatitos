@@ -9,7 +9,7 @@ import com.jokerp515.registrogatitos.ui.gatitos.GatoCard
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 
 @Composable
-fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel, go: (Any) -> Unit) {
+fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel) {
 
     val listaDeGatos by viewModel.gatoFlow.collectAsState(initial = emptyList())
 
@@ -17,6 +17,6 @@ fun ListaDeGatosScreen(viewModel: RegistroDeGatosViewModel, go: (Any) -> Unit) {
         titulo = stringResource(R.string.lista_de_gatos_registrados),
         listaDeGatos
     ) { gato ->
-        GatoCard(gato)
+        GatoCard(gato, onDelete = { viewModel.eliminarGato(gato) } )
     }
 }
