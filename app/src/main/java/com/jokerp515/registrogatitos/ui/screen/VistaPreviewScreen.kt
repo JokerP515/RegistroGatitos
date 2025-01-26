@@ -5,7 +5,7 @@ import androidx.compose.ui.res.stringResource
 import com.jokerp515.registrogatitos.R
 import com.jokerp515.registrogatitos.data.Gato
 import com.jokerp515.registrogatitos.local.entities.GatoEntity
-import com.jokerp515.registrogatitos.ui.gatitos.GatoCard
+import com.jokerp515.registrogatitos.ui.cards.GatoCard
 import kotlin.random.Random
 
 @Composable

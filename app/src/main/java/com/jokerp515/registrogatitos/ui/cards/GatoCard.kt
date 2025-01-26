@@ -1,4 +1,4 @@
-package com.jokerp515.registrogatitos.ui.gatitos
+package com.jokerp515.registrogatitos.ui.cards
 
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.AnimatedVisibility

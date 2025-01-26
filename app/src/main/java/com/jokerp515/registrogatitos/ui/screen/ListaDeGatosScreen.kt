@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import com.jokerp515.registrogatitos.R
-import com.jokerp515.registrogatitos.ui.gatitos.GatoCard
+import com.jokerp515.registrogatitos.ui.cards.GatoCard
 import com.jokerp515.registrogatitos.viewmodel.gatitos.RegistroDeGatosViewModel
 
 @Composable
